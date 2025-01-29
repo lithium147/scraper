@@ -50,6 +50,7 @@
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <nemo.version>0.1</nemo.version>
     <flink.artifact.name>beam-runners-flink-1.19</flink.artifact.name>
+    <lombok.version>1.18.34</lombok.version>
   </properties>
 
   <repositories>
@@ -75,6 +76,13 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
 
@@ -505,7 +513,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.34</version>
+      <version>${lombok.version}</version>
     </dependency>
 
     <dependency>

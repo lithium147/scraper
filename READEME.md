@@ -1,4 +1,10 @@
+# Scraper
 
+## google cloud
+
+login with the following command:
+
+    gcloud auth application-default login
 
 mvn compile exec:java -Dexec.mainClass=com.solubris.Scrape \
 -Dexec.args="--runner=DataflowRunner --project=explore-447815 \
@@ -6,6 +12,5 @@ mvn compile exec:java -Dexec.mainClass=com.solubris.Scrape \
 --gcpTempLocation=gs://explore-temp-bucket/tmp \
 --region=europe-west1" \
 -Pdataflow-runner
-
 
 --inputFile=gs://apache-beam-samples/shakespeare/* --output=gs://<your-gcs-bucket>/counts" \

@@ -9,17 +9,15 @@ import org.apache.beam.sdk.io.influxdb.InfluxDbIO;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.options.Validation;
-import org.apache.beam.sdk.options.ValueProvider;
 import org.apache.beam.sdk.options.ValueProvider.StaticValueProvider;
-import org.apache.beam.sdk.transforms.*;
+import org.apache.beam.sdk.transforms.Create;
+import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.Filter;
+import org.apache.beam.sdk.transforms.FlatMapElements;
+import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.transforms.SimpleFunction;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
-import org.apache.beam.sdk.values.TypeDescriptors;
-import org.checkerframework.checker.initialization.qual.Initialized;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.UnknownKeyFor;
-import org.influxdb.InfluxDB;
-import org.influxdb.InfluxDBFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +55,8 @@ public class Scrape {
         response.getFailures().apply("logFailures", ParDo.of(new LogOutput<>("Failures: ")));
 
         String hostUrl = "https://us-central1-1.gcp.cloud2.influxdata.com";
-        String authToken = "1ikPPy3JuVXMSwk3zvf5xcFd-Xof2bWXK1JS7rCilj8yzmyHFcDiyrk7a35XF8bLVZtSiXdW66_9vqMCH-_4BQ==";
+        // TODO get from google secrets or something?
+        String authToken = "";
 
         PCollection<List<ShowPrice>> result = response.getResponses();
         PCollection<ShowPrice> results =

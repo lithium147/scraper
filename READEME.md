@@ -2,15 +2,13 @@
 
 ## google cloud
 
-login with the following command:
+login with the following commands:
 
     gcloud auth application-default login
+    gcloud auth login
 
-mvn compile exec:java -Dexec.mainClass=com.solubris.Scrape \
--Dexec.args="--runner=DataflowRunner --project=explore-447815 \
---url=https://www.rhs.org.uk/shows-events/rhs-chelsea-flower-show/ticket-options
---gcpTempLocation=gs://explore-temp-bucket/tmp \
---region=europe-west1" \
--Pdataflow-runner
+## secrets
 
---inputFile=gs://apache-beam-samples/shakespeare/* --output=gs://<your-gcs-bucket>/counts" \
+go here to enable secrets API
+
+    https://console.developers.google.com/apis/api/secretmanager.googleapis.com/overview?project=explore-447815

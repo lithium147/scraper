@@ -1,10 +1,5 @@
 package com.solubris;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
 import org.apache.beam.io.requestresponse.Caller;
 import org.apache.beam.io.requestresponse.UserCodeExecutionException;
 import org.apache.beam.sdk.values.KV;
@@ -13,6 +8,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UrlCaller implements Caller<KV<String, String>, List<ShowPrice>> {
     private static final Logger LOG = LoggerFactory.getLogger(UrlCaller.class);

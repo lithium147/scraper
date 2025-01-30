@@ -31,6 +31,10 @@ public class ScrapeTest {
     /**
      * Want to test using a stub html page, so don't hammer the real url's.
      * Either mock the http client or use something like wire mock.
+     *
+     * <p>TODO what to do about influx publish?
+     * It would be difficult to create a stub influx.
+     * So perhaps allow influx to be disabled via the options.
      */
     @Test
     public void canScrape() throws Exception {
@@ -41,7 +45,7 @@ public class ScrapeTest {
                         .withBody(IOUtils.resourceToString("/scrape.html", UTF8))));
 
         int port = wireMockRule.port();
-        Scrape.ScrapeOptions options = TestPipeline.testingPipelineOptions().as(Scrape.ScrapeOptions.class);
+        ScrapeOptions options = TestPipeline.testingPipelineOptions().as(ScrapeOptions.class);
         options.setUrl("http://localhost:" + port + "/");
         // need the price name also, so can work out which price is which
         // seems like need to model all the prices on the page

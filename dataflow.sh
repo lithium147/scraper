@@ -1,6 +1,10 @@
-mvn compile exec:java -Dexec.mainClass=com.solubris.Scrape \
--Dexec.args="--runner=DataflowRunner --project=explore-447815 \
+#!/usr/bin/env bash
+
+source env.sh
+
+mvn clean compile exec:java -Dexec.mainClass=com.solubris.Scrape \
+-Dexec.args="--runner=DataflowRunner --project=$GCP_PROJECT \
 --url=https://www.rhs.org.uk/shows-events/rhs-chelsea-flower-show/ticket-options \
---gcpTempLocation=gs://explore-temp-bucket/tmp \
---region=europe-west1" \
+--gcpTempLocation=$GCP_BUCKET/tmp \
+--region=$GCP_REGION" \
 -Pdataflow-runner
